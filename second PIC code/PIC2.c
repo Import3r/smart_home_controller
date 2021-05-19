@@ -9,8 +9,15 @@ void main() {
   if(UART1_Data_Ready() == 1)
    portb = UART1_Read();
   else portb = portb;
-   //delay_ms(100);
-    //v= 0x03 & v;
+
+  //Display Welcome and enter password (recieve from UART not necessary)
+
+  //recieve from UART what to display (Wrong password or dashboard)
+
+  //if wrong password GOTO begining of while loop
+
+  //if dashboard and wants to change password
+
 
 }
 }
