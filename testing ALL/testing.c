@@ -11,9 +11,11 @@ char txt[6];
 char  keypadPort at PORTD;
 
 void main(){
- //EEPROM_Write(0x32, 0x43); //initialize password in address 0x32 (higher two digits in lower address)
- //EEPROM_Write(0x33, 0x21); //lower two digits in higher address
-
+ EEPROM_Write(0x32, 1); //initialize password in address 0x32 (higher two digits in lower address)
+ EEPROM_Write(0x33, 2); //lower two digits in higher address
+ EEPROM_Write(0x34, 3);
+ EEPROM_Write(0x35, 4);
+ 
  ADCON0 = 0x05;
  ADCON1 = 0x00;
  CMCON = 7;
