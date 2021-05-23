@@ -50,8 +50,6 @@ void main() {
     Lcd_Chr(1, 2, PORTD.B7+48);
    }
  //else PORTD = PORTD;
-
- 
-    //Lcd_Out(1, 3, "Hello!");
+ //Lcd_Out(1, 3, "Hello!");
 }
 }

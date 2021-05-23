@@ -24,8 +24,7 @@ Count=0
 Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
-File0=testing.c
-Count=1
+Count=0
 [EEPROM]
 Count=0
 [ACTIVE_COMMENTS_FILES]
@@ -45,7 +44,9 @@ File0=UART
 File1=ADC
 File2=EEPROM
 File3=Keypad4x4
-Count=4
+File4=Lcd
+File5=Lcd_Constants
+Count=6
 [EXPANDED_NODES]
 0=testing.mcppi
 1=Sources
@@ -56,7 +57,7 @@ Count=2
 2=ADC
 145=EEPROM
 540=UART
-Count=5
+Count=6
 [PROGRAMMER_TYPE]
 Value=mikroE mikroProg
 [CODEGRIP_OPTIONS]
