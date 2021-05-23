@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=..\..\..\testing\testing2\testing2.c
+Value=..\testing.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -16,7 +16,7 @@ Value=0
 [EEPROM_DEFINITION]
 Value=
 [FILES]
-File0=PIC1.c
+File0=testing2.c
 Count=1
 [BINARIES]
 Count=0
@@ -24,8 +24,9 @@ Count=0
 Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
-File0=..\..\..\testing\testing2\testing2.c
-Count=1
+File0=testing2.c
+File1=..\testing.c
+Count=2
 [EEPROM]
 Count=0
 [ACTIVE_COMMENTS_FILES]
@@ -33,8 +34,7 @@ Count=0
 [OTHER_FILES]
 Count=0
 [SEARCH_PATH]
-Path0=..\second PIC code\
-Count=1
+Count=0
 [HEADER_PATH]
 Count=0
 [HEADERS]
@@ -42,14 +42,14 @@ Count=0
 [PLDS]
 Count=0
 [Useses]
-File0=ADC
-File1=UART
+File0=UART
+File1=ADC
 File2=Keypad4x4
 File3=Lcd
 File4=Lcd_Constants
 Count=5
 [EXPANDED_NODES]
-0=PIC1.mcppi
+0=testing2.mcppi
 1=Sources
 Count=2
 [LIB_EXPANDED_NODES]
@@ -57,7 +57,8 @@ Count=2
 1=System Libraries
 231=Keypad4x4
 235=Lcd
-Count=4
+540=UART
+Count=5
 [PROGRAMMER_TYPE]
 Value=mikroE mikroProg
 [CODEGRIP_OPTIONS]

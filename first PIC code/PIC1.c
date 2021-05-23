@@ -46,13 +46,13 @@ void main(){
   //send control byte to the other PIC to adjust outputs
   UART1_Write(flag1);
 
-  //Display Welcome and enter password (use UART)
+  //enter password (use UART)
 
   //read password and compare it to EEPROM read value
 
   //set or reset authintecation flag
 
-  //Two options to display: 1- wrong password (use UART):
+  //Two options to display: 1- wrong password (use UART to send what to display):
   //                                 GOTO beginning of while loop
   //
   //                        2- dashboard (use UART):
