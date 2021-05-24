@@ -2,6 +2,9 @@
 unsigned short int dashboard_flag = 0;
 
 
+
+
+
 sbit LCD_RS at RB4_bit;
 sbit LCD_EN at RB5_bit;
 sbit LCD_D4 at RB0_bit;
@@ -41,8 +44,17 @@ void main() {
 
  if(UART1_Data_Ready() == 1){
  PORTD = UART1_Read();
- if(!portd.B7)
- Lcd_Out(1, 1, "Enter password: ");
+
+ if(portd.B7 == 0&
+ portd.B6 == 0&
+ portd.B5 == 1&
+ portd.B4 == 0){
+ Lcd_Out(1, 1, "WRONG PASSWORD!! ");
+ delay_ms(1000);
+ Lcd_Cmd(_LCD_CLEAR);
+ }
+ else if(!portd.B7)
+ Lcd_Out(1, 1, "ENTER PASSWORD: ");
  else if(!dashboard_flag) {
  Lcd_Cmd(_LCD_CLEAR);
  Lcd_Out(1, 1, "Welcome :) ");
@@ -67,10 +79,11 @@ void main() {
  if(portd.B3) Lcd_Out(2, 12+16, "ON ");
  else Lcd_Out(2, 12+16, "OFF");
 
- }
-#line 79 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing2/testing2.c"
- }
 
 
+ }
+
+ }
+#line 94 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing2/testing2.c"
 }
 }

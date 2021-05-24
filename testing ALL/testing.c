@@ -5,13 +5,13 @@ B7 B6 B5 B4
 0  0   1  0   Incorrect Password
 
 */
-
-
 unsigned int value;
 unsigned int value2;
 unsigned short int flag1 =0x00;    //flag byte to send to the other PIC to control outputs
 unsigned short int flag2 = 0xFF;   //flag byte refering to the user control of sub-systems, initialized FF
                                    //as sub-systems are initially activated
+//unsigned int LSB,MSB;              //temp digits
+
 unsigned short kp = 0;
 unsigned short input_digit;
 char input_pass[4];
@@ -64,7 +64,10 @@ void main(){
     flag1.B2 = 1;//flag1 = flag1 | 0x01;
   else flag1.B2 = 0;//flag1 = flag1 & 0xFE; //1111 1110
   
-  //Tamperature (Hamza)
+  //LSB =  value2 % 10 +0x30;
+  //MSB =  value2 / 10 +0x30
+  
+  //moisture (Hamza)
   delay_ms(10);
   value = ADC_Read(0)*4.88;
 
@@ -75,11 +78,13 @@ void main(){
   //send control byte to the other PIC to adjust outputs
   UART1_Write(flag1);
   delay_ms(100);
-
+  flag1.B5 = 0;
    if (!flag1.B7){ // if not authenticated
+          //for incorrect password condition (LCD)
      if(pass_counter < 4){ // when password not complete
      // keep printing "Please enter password"
      // keep taking digits
+
      input_digit = Keypad_Key_Click();
      if(input_digit){
        switch (input_digit) {
@@ -113,10 +118,14 @@ void main(){
           correct_pass_flag[1] &
           correct_pass_flag[2] &
           correct_pass_flag[3])
-          flag1.B7 = 1;
+              flag1.B7 = 1;
        else{ // password complete and wrong
        // print wrong password
+       //flag1.B7 = 0;
        flag1.B7 = 0;
+       flag1.B6 = 0;
+       flag1.B5 = 1;
+       flag1.B4 = 0;
        }
      }
    }

@@ -1,9 +1,11 @@
 #line 1 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing.c"
-#line 10 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing.c"
+#line 8 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing.c"
 unsigned int value;
 unsigned int value2;
 unsigned short int flag1 =0x00;
 unsigned short int flag2 = 0xFF;
+
+
 
 unsigned short kp = 0;
 unsigned short input_digit;
@@ -58,6 +60,9 @@ void main(){
  else flag1.B2 = 0;
 
 
+
+
+
  delay_ms(10);
  value = ADC_Read(0)*4.88;
 
@@ -68,9 +73,11 @@ void main(){
 
  UART1_Write(flag1);
  delay_ms(100);
-
+ flag1.B5 = 0;
  if (!flag1.B7){
+
  if(pass_counter < 4){
+
 
 
  input_digit = Keypad_Key_Click();
@@ -109,7 +116,11 @@ void main(){
  flag1.B7 = 1;
  else{
 
+
  flag1.B7 = 0;
+ flag1.B6 = 0;
+ flag1.B5 = 1;
+ flag1.B4 = 0;
  }
  }
  }

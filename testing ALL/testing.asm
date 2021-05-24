@@ -133,7 +133,7 @@ L_main13:
 ;testing.c,65 :: 		else flag1.B2 = 0;//flag1 = flag1 & 0xFE; //1111 1110
 	BCF        _flag1+0, 2
 L_main14:
-;testing.c,68 :: 		delay_ms(10);
+;testing.c,71 :: 		delay_ms(10);
 	MOVLW      26
 	MOVWF      R12+0
 	MOVLW      248
@@ -144,7 +144,7 @@ L_main15:
 	DECFSZ     R12+0, 1
 	GOTO       L_main15
 	NOP
-;testing.c,69 :: 		value = ADC_Read(0)*4.88;
+;testing.c,72 :: 		value = ADC_Read(0)*4.88;
 	CLRF       FARG_ADC_Read_channel+0
 	CALL       _ADC_Read+0
 	CALL       _word2double+0
@@ -162,7 +162,7 @@ L_main15:
 	MOVWF      _value+0
 	MOVF       R0+1, 0
 	MOVWF      _value+1
-;testing.c,71 :: 		if ((value>300) && (flag2.B3 == 1))
+;testing.c,74 :: 		if ((value>300) && (flag2.B3 == 1))
 	MOVF       R0+1, 0
 	SUBLW      1
 	BTFSS      STATUS+0, 2
@@ -175,18 +175,18 @@ L__main56:
 	BTFSS      _flag2+0, 3
 	GOTO       L_main18
 L__main50:
-;testing.c,72 :: 		flag1.B3 = 1;
+;testing.c,75 :: 		flag1.B3 = 1;
 	BSF        _flag1+0, 3
 	GOTO       L_main19
 L_main18:
-;testing.c,73 :: 		else flag1.B3 = 0;
+;testing.c,76 :: 		else flag1.B3 = 0;
 	BCF        _flag1+0, 3
 L_main19:
-;testing.c,76 :: 		UART1_Write(flag1);
+;testing.c,79 :: 		UART1_Write(flag1);
 	MOVF       _flag1+0, 0
 	MOVWF      FARG_UART1_Write_data_+0
 	CALL       _UART1_Write+0
-;testing.c,77 :: 		delay_ms(100);
+;testing.c,80 :: 		delay_ms(100);
 	MOVLW      2
 	MOVWF      R11+0
 	MOVLW      4
@@ -201,85 +201,87 @@ L_main20:
 	DECFSZ     R11+0, 1
 	GOTO       L_main20
 	NOP
-;testing.c,79 :: 		if (!flag1.B7){ // if not authenticated
+;testing.c,81 :: 		flag1.B5 = 0;
+	BCF        _flag1+0, 5
+;testing.c,82 :: 		if (!flag1.B7){ // if not authenticated
 	BTFSC      _flag1+0, 7
 	GOTO       L_main21
-;testing.c,80 :: 		if(pass_counter < 4){ // when password not complete
+;testing.c,84 :: 		if(pass_counter < 4){ // when password not complete
 	MOVLW      4
 	SUBWF      _pass_counter+0, 0
 	BTFSC      STATUS+0, 0
 	GOTO       L_main22
-;testing.c,83 :: 		input_digit = Keypad_Key_Click();
+;testing.c,88 :: 		input_digit = Keypad_Key_Click();
 	CALL       _Keypad_Key_Click+0
 	MOVF       R0+0, 0
 	MOVWF      _input_digit+0
-;testing.c,84 :: 		if(input_digit){
+;testing.c,89 :: 		if(input_digit){
 	MOVF       R0+0, 0
 	BTFSC      STATUS+0, 2
 	GOTO       L_main23
-;testing.c,85 :: 		switch (input_digit) {
+;testing.c,90 :: 		switch (input_digit) {
 	GOTO       L_main24
-;testing.c,86 :: 		case  1: input_digit = 49; break; // 1
+;testing.c,91 :: 		case  1: input_digit = 49; break; // 1
 L_main26:
 	MOVLW      49
 	MOVWF      _input_digit+0
 	GOTO       L_main25
-;testing.c,87 :: 		case  2: input_digit = 50; break; // 2
+;testing.c,92 :: 		case  2: input_digit = 50; break; // 2
 L_main27:
 	MOVLW      50
 	MOVWF      _input_digit+0
 	GOTO       L_main25
-;testing.c,88 :: 		case  3: input_digit = 51; break; // 3
+;testing.c,93 :: 		case  3: input_digit = 51; break; // 3
 L_main28:
 	MOVLW      51
 	MOVWF      _input_digit+0
 	GOTO       L_main25
-;testing.c,90 :: 		case  5: input_digit = 52; break; // 4
+;testing.c,95 :: 		case  5: input_digit = 52; break; // 4
 L_main29:
 	MOVLW      52
 	MOVWF      _input_digit+0
 	GOTO       L_main25
-;testing.c,91 :: 		case  6: input_digit = 53; break; // 5
+;testing.c,96 :: 		case  6: input_digit = 53; break; // 5
 L_main30:
 	MOVLW      53
 	MOVWF      _input_digit+0
 	GOTO       L_main25
-;testing.c,92 :: 		case  7: input_digit = 54; break; // 6
+;testing.c,97 :: 		case  7: input_digit = 54; break; // 6
 L_main31:
 	MOVLW      54
 	MOVWF      _input_digit+0
 	GOTO       L_main25
-;testing.c,94 :: 		case  9: input_digit = 55; break;  // 7
+;testing.c,99 :: 		case  9: input_digit = 55; break;  // 7
 L_main32:
 	MOVLW      55
 	MOVWF      _input_digit+0
 	GOTO       L_main25
-;testing.c,95 :: 		case 10: input_digit = 56; break;  // 8
+;testing.c,100 :: 		case 10: input_digit = 56; break;  // 8
 L_main33:
 	MOVLW      56
 	MOVWF      _input_digit+0
 	GOTO       L_main25
-;testing.c,96 :: 		case 11: input_digit = 57; break;  // 9
+;testing.c,101 :: 		case 11: input_digit = 57; break;  // 9
 L_main34:
 	MOVLW      57
 	MOVWF      _input_digit+0
 	GOTO       L_main25
-;testing.c,98 :: 		case 13: input_digit = 42; break;  // '*'
+;testing.c,103 :: 		case 13: input_digit = 42; break;  // '*'
 L_main35:
 	MOVLW      42
 	MOVWF      _input_digit+0
 	GOTO       L_main25
-;testing.c,99 :: 		case 14: input_digit = 48; break;  // 0
+;testing.c,104 :: 		case 14: input_digit = 48; break;  // 0
 L_main36:
 	MOVLW      48
 	MOVWF      _input_digit+0
 	GOTO       L_main25
-;testing.c,100 :: 		case 15: input_digit = 35; break;  // '#'
+;testing.c,105 :: 		case 15: input_digit = 35; break;  // '#'
 L_main37:
 	MOVLW      35
 	MOVWF      _input_digit+0
 	GOTO       L_main25
-;testing.c,101 :: 		}
+;testing.c,106 :: 		}
 L_main24:
 	MOVF       _input_digit+0, 0
 	XORLW      1
@@ -330,7 +332,7 @@ L_main24:
 	BTFSC      STATUS+0, 2
 	GOTO       L_main37
 L_main25:
-;testing.c,102 :: 		if(EEPROM_read(0x32 + pass_counter) == input_digit) correct_pass_flag[pass_counter] = 1;
+;testing.c,107 :: 		if(EEPROM_read(0x32 + pass_counter) == input_digit) correct_pass_flag[pass_counter] = 1;
 	MOVF       _pass_counter+0, 0
 	ADDLW      50
 	MOVWF      FARG_EEPROM_Read_Address+0
@@ -353,7 +355,7 @@ L_main25:
 	MOVWF      INDF+0
 	GOTO       L_main39
 L_main38:
-;testing.c,103 :: 		else correct_pass_flag[pass_counter] = 0;
+;testing.c,108 :: 		else correct_pass_flag[pass_counter] = 0;
 	MOVF       _pass_counter+0, 0
 	MOVWF      R0+0
 	RLF        R0+0, 1
@@ -365,28 +367,28 @@ L_main38:
 	INCF       FSR, 1
 	CLRF       INDF+0
 L_main39:
-;testing.c,105 :: 		pass_counter++;
+;testing.c,110 :: 		pass_counter++;
 	INCF       _pass_counter+0, 1
-;testing.c,106 :: 		}
+;testing.c,111 :: 		}
 L_main23:
-;testing.c,107 :: 		}
+;testing.c,112 :: 		}
 	GOTO       L_main40
 L_main22:
-;testing.c,110 :: 		pass_counter = 0;
+;testing.c,115 :: 		pass_counter = 0;
 	CLRF       _pass_counter+0
-;testing.c,113 :: 		correct_pass_flag[1] &
+;testing.c,118 :: 		correct_pass_flag[1] &
 	MOVF       _correct_pass_flag+2, 0
 	ANDWF      _correct_pass_flag+0, 0
 	MOVWF      R0+0
 	MOVF       _correct_pass_flag+1, 0
 	ANDWF      _correct_pass_flag+3, 0
 	MOVWF      R0+1
-;testing.c,114 :: 		correct_pass_flag[2] &
+;testing.c,119 :: 		correct_pass_flag[2] &
 	MOVF       _correct_pass_flag+4, 0
 	ANDWF      R0+0, 1
 	MOVF       _correct_pass_flag+5, 0
 	ANDWF      R0+1, 1
-;testing.c,115 :: 		correct_pass_flag[3])
+;testing.c,120 :: 		correct_pass_flag[3])
 	MOVF       _correct_pass_flag+6, 0
 	ANDWF      R0+0, 1
 	MOVF       _correct_pass_flag+7, 0
@@ -395,48 +397,54 @@ L_main22:
 	IORWF      R0+1, 0
 	BTFSC      STATUS+0, 2
 	GOTO       L_main41
-;testing.c,116 :: 		flag1.B7 = 1;
+;testing.c,121 :: 		flag1.B7 = 1;
 	BSF        _flag1+0, 7
 	GOTO       L_main42
 L_main41:
-;testing.c,119 :: 		flag1.B7 = 0;
+;testing.c,125 :: 		flag1.B7 = 0;
 	BCF        _flag1+0, 7
-;testing.c,120 :: 		}
+;testing.c,126 :: 		flag1.B6 = 0;
+	BCF        _flag1+0, 6
+;testing.c,127 :: 		flag1.B5 = 1;
+	BSF        _flag1+0, 5
+;testing.c,128 :: 		flag1.B4 = 0;
+	BCF        _flag1+0, 4
+;testing.c,129 :: 		}
 L_main42:
-;testing.c,121 :: 		}
+;testing.c,130 :: 		}
 L_main40:
-;testing.c,122 :: 		}
+;testing.c,131 :: 		}
 	GOTO       L_main43
 L_main21:
-;testing.c,125 :: 		kp = 0;
+;testing.c,134 :: 		kp = 0;
 	CLRF       _kp+0
-;testing.c,126 :: 		kp = Keypad_Key_Click();             // Store key code in kp variable
+;testing.c,135 :: 		kp = Keypad_Key_Click();             // Store key code in kp variable
 	CALL       _Keypad_Key_Click+0
 	MOVF       R0+0, 0
 	MOVWF      _kp+0
-;testing.c,129 :: 		switch (kp) {
+;testing.c,138 :: 		switch (kp) {
 	GOTO       L_main44
-;testing.c,130 :: 		case  1: flag2.B0 = ~flag2.B0; break; // 1
+;testing.c,139 :: 		case  1: flag2.B0 = ~flag2.B0; break; // 1
 L_main46:
 	MOVLW      1
 	XORWF      _flag2+0, 1
 	GOTO       L_main45
-;testing.c,131 :: 		case  2: flag2.B1 = ~flag2.B1; break;// 2
+;testing.c,140 :: 		case  2: flag2.B1 = ~flag2.B1; break;// 2
 L_main47:
 	MOVLW      2
 	XORWF      _flag2+0, 1
 	GOTO       L_main45
-;testing.c,132 :: 		case  3: flag2.B2 = ~flag2.B2; break;// 3
+;testing.c,141 :: 		case  3: flag2.B2 = ~flag2.B2; break;// 3
 L_main48:
 	MOVLW      4
 	XORWF      _flag2+0, 1
 	GOTO       L_main45
-;testing.c,133 :: 		case  5: flag2.B3 = ~flag2.B3; break;// 4
+;testing.c,142 :: 		case  5: flag2.B3 = ~flag2.B3; break;// 4
 L_main49:
 	MOVLW      8
 	XORWF      _flag2+0, 1
 	GOTO       L_main45
-;testing.c,134 :: 		}
+;testing.c,143 :: 		}
 L_main44:
 	MOVF       _kp+0, 0
 	XORLW      1
@@ -455,11 +463,11 @@ L_main44:
 	BTFSC      STATUS+0, 2
 	GOTO       L_main49
 L_main45:
-;testing.c,135 :: 		}
+;testing.c,144 :: 		}
 L_main43:
-;testing.c,136 :: 		}
+;testing.c,145 :: 		}
 	GOTO       L_main1
-;testing.c,137 :: 		}
+;testing.c,146 :: 		}
 L_end_main:
 	GOTO       $+0
 ; end of _main
