@@ -1,4 +1,4 @@
-#line 1 "P:/git_repos/smart_home_controller/testing ALL/testing.c"
+#line 1 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing.c"
 unsigned int value;
 unsigned int value2;
 unsigned short int flag1 =0x00;
@@ -7,7 +7,8 @@ unsigned short int flag2 = 0xFF;
 unsigned short kp = 0;
 unsigned short input_digit;
 char input_pass[4];
-unsigned short int correct_pass_flag = 1;
+
+int correct_pass_flag[4];
 unsigned short int pass_counter = 0;
 
 char txt[6];
@@ -62,7 +63,7 @@ void main(){
  if ((value>300) && (flag2.B3 == 1))
  flag1.B3 = 1;
  else flag1.B3 = 0;
-#line 80 "P:/git_repos/smart_home_controller/testing ALL/testing.c"
+#line 81 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing.c"
  UART1_Write(flag1);
  delay_ms(100);
 
@@ -70,8 +71,8 @@ void main(){
  if(pass_counter < 4){
 
 
-
  input_digit = Keypad_Key_Click();
+ if(input_digit){
  switch (input_digit) {
  case 1: input_digit = 49; break;
  case 2: input_digit = 50; break;
@@ -89,18 +90,21 @@ void main(){
  case 14: input_digit = 48; break;
  case 15: input_digit = 35; break;
  }
-
- if(EEPROM_read(0x32 + pass_counter) == input_digit) correct_pass_flag = 1;
- else correct_pass_flag = 0;
+ if(EEPROM_read(0x32 + pass_counter) == input_digit) correct_pass_flag[pass_counter] = 1;
+ else correct_pass_flag[pass_counter] = 0;
 
  pass_counter++;
+ }
  }
  else{
 
  pass_counter = 0;
 
- if(correct_pass_flag) flag1.B7 = 1;
-
+ if(correct_pass_flag[0] &
+ correct_pass_flag[1] &
+ correct_pass_flag[2] &
+ correct_pass_flag[3])
+ flag1.B7 = 1;
  else{
 
  flag1.B7 = 0;
@@ -120,6 +124,6 @@ void main(){
  case 5: flag2.B3 = ~flag2.B3; break;
  }
  }
-#line 158 "P:/git_repos/smart_home_controller/testing ALL/testing.c"
+#line 162 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing.c"
 }
 }
