@@ -43,107 +43,184 @@ L_main0:
 	CALL       _UART1_Read+0
 	MOVF       R0+0, 0
 	MOVWF      PORTD+0
-;testing2.c,43 :: 		Lcd_Chr(1, 9, PORTD.B0+48);
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_row+0
-	MOVLW      9
-	MOVWF      FARG_Lcd_Chr_column+0
-	MOVLW      0
-	BTFSC      PORTD+0, 0
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_out_char+0
-	MOVLW      48
-	ADDWF      FARG_Lcd_Chr_out_char+0, 1
-	CALL       _Lcd_Chr+0
-;testing2.c,44 :: 		Lcd_Chr(1, 8, PORTD.B1+48);
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_row+0
-	MOVLW      8
-	MOVWF      FARG_Lcd_Chr_column+0
-	MOVLW      0
-	BTFSC      PORTD+0, 1
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_out_char+0
-	MOVLW      48
-	ADDWF      FARG_Lcd_Chr_out_char+0, 1
-	CALL       _Lcd_Chr+0
-;testing2.c,45 :: 		Lcd_Chr(1, 7, PORTD.B2+48);
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_row+0
-	MOVLW      7
-	MOVWF      FARG_Lcd_Chr_column+0
-	MOVLW      0
-	BTFSC      PORTD+0, 2
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_out_char+0
-	MOVLW      48
-	ADDWF      FARG_Lcd_Chr_out_char+0, 1
-	CALL       _Lcd_Chr+0
-;testing2.c,46 :: 		Lcd_Chr(1, 6, PORTD.B3+48);
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_row+0
-	MOVLW      6
-	MOVWF      FARG_Lcd_Chr_column+0
-	MOVLW      0
-	BTFSC      PORTD+0, 3
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_out_char+0
-	MOVLW      48
-	ADDWF      FARG_Lcd_Chr_out_char+0, 1
-	CALL       _Lcd_Chr+0
-;testing2.c,47 :: 		Lcd_Chr(1, 5, PORTD.B4+48);
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_row+0
-	MOVLW      5
-	MOVWF      FARG_Lcd_Chr_column+0
-	MOVLW      0
-	BTFSC      PORTD+0, 4
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_out_char+0
-	MOVLW      48
-	ADDWF      FARG_Lcd_Chr_out_char+0, 1
-	CALL       _Lcd_Chr+0
-;testing2.c,48 :: 		Lcd_Chr(1, 4, PORTD.B5+48);
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_row+0
-	MOVLW      4
-	MOVWF      FARG_Lcd_Chr_column+0
-	MOVLW      0
-	BTFSC      PORTD+0, 5
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_out_char+0
-	MOVLW      48
-	ADDWF      FARG_Lcd_Chr_out_char+0, 1
-	CALL       _Lcd_Chr+0
-;testing2.c,49 :: 		Lcd_Chr(1, 3, PORTD.B6+48);
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_row+0
-	MOVLW      3
-	MOVWF      FARG_Lcd_Chr_column+0
-	MOVLW      0
-	BTFSC      PORTD+0, 6
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_out_char+0
-	MOVLW      48
-	ADDWF      FARG_Lcd_Chr_out_char+0, 1
-	CALL       _Lcd_Chr+0
-;testing2.c,50 :: 		Lcd_Chr(1, 2, PORTD.B7+48);
-	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_row+0
-	MOVLW      2
-	MOVWF      FARG_Lcd_Chr_column+0
-	MOVLW      0
+;testing2.c,43 :: 		if(!portd.B7)
 	BTFSC      PORTD+0, 7
+	GOTO       L_main3
+;testing2.c,44 :: 		Lcd_Out(1, 1, "Enter password: ");
 	MOVLW      1
-	MOVWF      FARG_Lcd_Chr_out_char+0
-	MOVLW      48
-	ADDWF      FARG_Lcd_Chr_out_char+0, 1
-	CALL       _Lcd_Chr+0
-;testing2.c,51 :: 		}
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      1
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr1_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+	GOTO       L_main4
+L_main3:
+;testing2.c,45 :: 		else if(!dashboard_flag) {
+	MOVF       _dashboard_flag+0, 0
+	BTFSS      STATUS+0, 2
+	GOTO       L_main5
+;testing2.c,46 :: 		Lcd_Cmd(_LCD_CLEAR);                     // Clear display
+	MOVLW      1
+	MOVWF      FARG_Lcd_Cmd_out_char+0
+	CALL       _Lcd_Cmd+0
+;testing2.c,47 :: 		Lcd_Out(1, 1, "Welcome :) ");
+	MOVLW      1
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      1
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr2_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+;testing2.c,48 :: 		delay_ms(1000);
+	MOVLW      11
+	MOVWF      R11+0
+	MOVLW      38
+	MOVWF      R12+0
+	MOVLW      93
+	MOVWF      R13+0
+L_main6:
+	DECFSZ     R13+0, 1
+	GOTO       L_main6
+	DECFSZ     R12+0, 1
+	GOTO       L_main6
+	DECFSZ     R11+0, 1
+	GOTO       L_main6
+	NOP
+	NOP
+;testing2.c,49 :: 		Lcd_Cmd(_LCD_CLEAR);                     // Clear display
+	MOVLW      1
+	MOVWF      FARG_Lcd_Cmd_out_char+0
+	CALL       _Lcd_Cmd+0
+;testing2.c,50 :: 		dashboard_flag = 1;}
+	MOVLW      1
+	MOVWF      _dashboard_flag+0
+	GOTO       L_main7
+L_main5:
+;testing2.c,52 :: 		Lcd_Out(1, 1, "1.DOOR: ");
+	MOVLW      1
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      1
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr3_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+;testing2.c,53 :: 		Lcd_Out(2, 1, "2.GARAGE: ");
+	MOVLW      2
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      1
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr4_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+;testing2.c,54 :: 		Lcd_Out(1, 1+16, "3.GARDEN: ");
+	MOVLW      1
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      17
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr5_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+;testing2.c,55 :: 		Lcd_Out(2, 1+16, "4.COOLING: ");
+	MOVLW      2
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      17
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr6_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+;testing2.c,57 :: 		if(portd.B0) Lcd_Out(1, 9, "ON ");
+	BTFSS      PORTD+0, 0
+	GOTO       L_main8
+	MOVLW      1
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      9
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr7_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+	GOTO       L_main9
+L_main8:
+;testing2.c,58 :: 		else Lcd_Out(1, 9, "OFF");
+	MOVLW      1
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      9
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr8_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+L_main9:
+;testing2.c,60 :: 		if(portd.B1) Lcd_Out(2, 11, "ON ");
+	BTFSS      PORTD+0, 1
+	GOTO       L_main10
+	MOVLW      2
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      11
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr9_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+	GOTO       L_main11
+L_main10:
+;testing2.c,61 :: 		else Lcd_Out(2, 11, "OFF");
+	MOVLW      2
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      11
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr10_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+L_main11:
+;testing2.c,63 :: 		if(portd.B2) Lcd_Out(1, 11+16, "ON ");
+	BTFSS      PORTD+0, 2
+	GOTO       L_main12
+	MOVLW      1
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      27
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr11_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+	GOTO       L_main13
+L_main12:
+;testing2.c,64 :: 		else Lcd_Out(1, 11+16, "OFF");
+	MOVLW      1
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      27
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr12_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+L_main13:
+;testing2.c,66 :: 		if(portd.B3) Lcd_Out(2, 12+16, "ON ");
+	BTFSS      PORTD+0, 3
+	GOTO       L_main14
+	MOVLW      2
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      28
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr13_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+	GOTO       L_main15
+L_main14:
+;testing2.c,67 :: 		else Lcd_Out(2, 12+16, "OFF");
+	MOVLW      2
+	MOVWF      FARG_Lcd_Out_row+0
+	MOVLW      28
+	MOVWF      FARG_Lcd_Out_column+0
+	MOVLW      ?lstr14_testing2+0
+	MOVWF      FARG_Lcd_Out_text+0
+	CALL       _Lcd_Out+0
+L_main15:
+;testing2.c,69 :: 		}
+L_main7:
+L_main4:
+;testing2.c,79 :: 		}
 L_main2:
-;testing2.c,56 :: 		}
+;testing2.c,82 :: 		}
 	GOTO       L_main0
-;testing2.c,57 :: 		}
+;testing2.c,83 :: 		}
 L_end_main:
 	GOTO       $+0
 ; end of _main

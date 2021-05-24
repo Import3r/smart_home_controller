@@ -1,4 +1,5 @@
 #line 1 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing.c"
+#line 10 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing.c"
 unsigned int value;
 unsigned int value2;
 unsigned short int flag1 =0x00;
@@ -39,14 +40,14 @@ void main(){
 
  while(1){
 
- if ((portb.b0 != 1) && (flag2.B0 == 1))
+ if ((portb.b0 == 1) && (flag2.B0 == 1))
  flag1.B0 = 1;
  else flag1.B0 = 0;
+
 
  if ((portb.b0 == 1) && (flag2.B1 == 1))
  flag1.B1 = 1;
  else flag1.B1 = 0;
-
 
 
  ADCON0 = 0b00001001;
@@ -56,14 +57,15 @@ void main(){
  flag1.B2 = 1;
  else flag1.B2 = 0;
 
- delay_ms(10);
 
+ delay_ms(10);
  value = ADC_Read(0)*4.88;
 
  if ((value>300) && (flag2.B3 == 1))
  flag1.B3 = 1;
  else flag1.B3 = 0;
-#line 81 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing.c"
+
+
  UART1_Write(flag1);
  delay_ms(100);
 
@@ -124,6 +126,5 @@ void main(){
  case 5: flag2.B3 = ~flag2.B3; break;
  }
  }
-#line 162 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing.c"
 }
 }

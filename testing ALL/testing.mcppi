@@ -25,7 +25,8 @@ Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
 File0=testing.c
-Count=1
+File1=.\testing2\testing2.c
+Count=2
 [EEPROM]
 Count=0
 [ACTIVE_COMMENTS_FILES]
@@ -59,7 +60,7 @@ Count=2
 145=EEPROM
 231=Keypad4x4
 540=UART
-Count=6
+Count=7
 [PROGRAMMER_TYPE]
 Value=mikroE mikroProg
 [CODEGRIP_OPTIONS]

@@ -1,3 +1,12 @@
+/*
+B7 B6 B5 B4
+1  x   x  x   dashboard
+0  0   0  1   Please enter password
+0  0   1  0   Incorrect Password
+
+*/
+
+
 unsigned int value;
 unsigned int value2;
 unsigned short int flag1 =0x00;    //flag byte to send to the other PIC to control outputs
@@ -38,15 +47,15 @@ void main(){
  
  while(1){
  //door sensor
-  if ((portb.b0 != 1) && (flag2.B0 == 1))
+  if ((portb.b0 == 1) && (flag2.B0 == 1))
      flag1.B0 = 1;  //flag1 |= 0x02;     //buzzer ON
   else flag1.B0 = 0; //flag1 = flag1 & 0xFD;
   
+  //PIR (HAMZA)
   if ((portb.b0 == 1) && (flag2.B1 == 1))
      flag1.B1 = 1;    //LED
   else flag1.B1 = 0; //flag1 = flag1 & 0xF7;     //flag1 |= 0x08;
-  //delay_ms(100);
-  
+
   //temperature sensor
   ADCON0 = 0b00001001;
   value2 = ADC_Read(1)*4.88;
@@ -55,28 +64,14 @@ void main(){
     flag1.B2 = 1;//flag1 = flag1 | 0x01;
   else flag1.B2 = 0;//flag1 = flag1 & 0xFE; //1111 1110
   
+  //Tamperature (Hamza)
   delay_ms(10);
-  //ADCON0 = 0b00000001;
   value = ADC_Read(0)*4.88;
 
   if ((value>300) && (flag2.B3 == 1))
    flag1.B3 = 1;
   else flag1.B3 = 0;
  
-  /*
-  //PIR sensor
-  if ((//PIR sensor) && (flag2.B2 == 1))
-   flag1 |= 0x04; //set bit
-  else flag1 &= 0xFB;     //reset bit
-  
-  //Moisture sensor
-  if ((//moisture) && (flag2.B3 == 1))
-   flag1 |= 0x08;  //set bit
-  else flag1 &= 0xF7;     //reset bit
-  */
-  
-  //read values once every 0.5 second
-
   //send control byte to the other PIC to adjust outputs
   UART1_Write(flag1);
   delay_ms(100);
@@ -138,26 +133,5 @@ void main(){
       case  5: flag2.B3 = ~flag2.B3; break;// 4
     }
    }
-
-  
-  //Display Welcome and enter password (use UART)
-  //delay_ms(100);
-  //read password and compare it to EEPROM read value
-
-  
-  // Wait for key to be pressed and released
-    //do
-    //  kp = Keypad_Key_Press();          // Store key code in kp variable
-                            // Reset key code variable
-  //set or reset authintecation flag
-  
-  //Two options to display: 1- wrong password (use UART):
-  //                                 GOTO beginning of while loop
-  //
-  //                        2- dashboard (use UART):
-  //                                 a) read input from user (use UART)
-  //                                 b) based on input set/reset flag2 bits
-  //                                 c) option to change password (write to EEPROM)
-  // authintication flag may not be necessary
 }
 }
