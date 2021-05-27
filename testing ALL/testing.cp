@@ -110,10 +110,11 @@ void main(){
  case 2: flag2.B1 = ~flag2.B1; break;
  case 3: flag2.B2 = ~flag2.B2; break;
  case 5: flag2.B3 = ~flag2.B3; break;
- case 15: {flag2 = 0xFF;
+ case 15:{flag2 = 0xFF;
  pass_counter = 0;
  flag1 = 0x00;
- break;}
+ break;
+ }
  }
  }
  }

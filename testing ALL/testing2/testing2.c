@@ -34,9 +34,11 @@ void main() {
         if(UART1_Data_Ready() == 1){
             PORTD = UART1_Read();  // Receive the flags from first controller
 
-            if(PORTD == 0x00){ dashboard_flag = 0;
-                              Lcd_Cmd(_LCD_CLEAR);
-                              }
+            if(PORTD == 0x00){     //Restart or initialize system
+                     dashboard_flag = 0;
+                     Lcd_Cmd(_LCD_CLEAR);
+            }
+                              
             if(portd.B7 == 0 & portd.B6 == 0&
             portd.B5 == 1 & portd.B4 == 0){  // Check if an incorrect password was entered
                 Lcd_Out(1, 1, "WRONG PASSWORD!! ");

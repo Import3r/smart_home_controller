@@ -65,7 +65,7 @@ L_main0:
 	CALL       _Keypad_Init+0
 ;testing.c,32 :: 		while(1){
 L_main1:
-;testing.c,33 :: 		UART1_Write(flag1);
+;testing.c,33 :: 		UART1_Write(flag1);                  //transmit flag that controls outputs
 	MOVF       _flag1+0, 0
 	MOVWF      FARG_UART1_Write_data_+0
 	CALL       _UART1_Write+0
@@ -438,7 +438,7 @@ L_main49:
 	MOVLW      8
 	XORWF      _flag2+0, 1
 	GOTO       L_main45
-;testing.c,112 :: 		case 15: {flag2 = 0xFF;
+;testing.c,112 :: 		case 15:{flag2 = 0xFF;               // lock option when # is pressed
 L_main50:
 	MOVLW      255
 	MOVWF      _flag2+0
@@ -446,9 +446,9 @@ L_main50:
 	CLRF       _pass_counter+0
 ;testing.c,114 :: 		flag1 = 0x00;
 	CLRF       _flag1+0
-;testing.c,115 :: 		break;}// lock
+;testing.c,115 :: 		break;
 	GOTO       L_main45
-;testing.c,116 :: 		}
+;testing.c,117 :: 		}
 L_main44:
 	MOVF       _kp+0, 0
 	XORLW      1
@@ -471,11 +471,11 @@ L_main44:
 	BTFSC      STATUS+0, 2
 	GOTO       L_main50
 L_main45:
-;testing.c,117 :: 		}
-L_main43:
 ;testing.c,118 :: 		}
-	GOTO       L_main1
+L_main43:
 ;testing.c,119 :: 		}
+	GOTO       L_main1
+;testing.c,120 :: 		}
 L_end_main:
 	GOTO       $+0
 ; end of _main
