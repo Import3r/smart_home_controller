@@ -676,7 +676,6 @@ txif
 txif_bit
 txreg
 txsta
-txt
 ua
 ua_bit
 uart1_data_ready

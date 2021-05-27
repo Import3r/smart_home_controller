@@ -5,6 +5,7 @@ main
 	UART1_Init
 	ADC_Init
 	Keypad_Init
+	UART1_Write
 	ADC_Read
 		Delay_22us
 	word2double
@@ -18,7 +19,6 @@ main
 		SETFUN32
 	double2word
 		SETIOV3224
-	UART1_Write
 	Keypad_Key_Click
 		Keypad_Key_Press
 			Delay_1us

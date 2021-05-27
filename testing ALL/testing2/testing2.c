@@ -34,14 +34,19 @@ void main() {
         if(UART1_Data_Ready() == 1){
             PORTD = UART1_Read();  // Receive the flags from first controller
 
+            if(PORTD == 0x00){ dashboard_flag = 0;
+                              Lcd_Cmd(_LCD_CLEAR);
+                              }
             if(portd.B7 == 0 & portd.B6 == 0&
             portd.B5 == 1 & portd.B4 == 0){  // Check if an incorrect password was entered
                 Lcd_Out(1, 1, "WRONG PASSWORD!! ");
                 delay_ms(1000);
                 Lcd_Cmd(_LCD_CLEAR);
                 }
-            else if(!portd.B7)    // prompts user for pass when not authenticated
+            else if(!portd.B7){    // prompts user for pass when not authenticated
+
                 Lcd_Out(1, 1, "ENTER PASSWORD: ");
+                }
             else if(!dashboard_flag) {  // Displays welcome message if the password is correct
                 Lcd_Cmd(_LCD_CLEAR);
                 Lcd_Out(1, 1, "Welcome :) ");

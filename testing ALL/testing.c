@@ -30,6 +30,9 @@ void main(){
     Keypad_Init();                           // Initialize Keypad
 
     while(1){
+        UART1_Write(flag1);
+        delay_ms(100);
+        
         /// door sensor
         if ((portb.b0 == 1) && (flag2.B0 == 1)) flag1.B0 = 1;  // Turn buzzer ON/OFF depending on door sensor
         else flag1.B0 = 0;
@@ -51,8 +54,7 @@ void main(){
         else flag1.B3 = 0;
 
         // send control flag1 to the other PIC to adjust outputs and LCD readings
-        UART1_Write(flag1);
-        delay_ms(100);
+        //
         flag1.B5 = 0;  // a flag to track incorrect passwords
 
         if (!flag1.B7){  // when not authenticated:
@@ -107,6 +109,10 @@ void main(){
                 case  2: flag2.B1 = ~flag2.B1; break;// 2
                 case  3: flag2.B2 = ~flag2.B2; break;// 3
                 case  5: flag2.B3 = ~flag2.B3; break;// 4
+                case 15: {flag2 = 0xFF;
+                         pass_counter = 0;
+                         flag1 = 0x00;
+                         break;}// lock
             }
         }
     }

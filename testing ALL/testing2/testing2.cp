@@ -2,9 +2,6 @@
 unsigned short int dashboard_flag = 0;
 
 
-
-
-
 sbit LCD_RS at RB4_bit;
 sbit LCD_EN at RB5_bit;
 sbit LCD_D4 at RB0_bit;
@@ -25,47 +22,45 @@ void main() {
  TRISD = 0x00;
  portd=0x00;
 
+
  Lcd_Init();
  Lcd_Cmd(_LCD_CLEAR);
- Lcd_Cmd(_LCD_FOURTH_ROW);
  Lcd_Cmd(_LCD_CURSOR_OFF);
-
-
-
-
-
-
 
 
  ADCON1 |= 0x0F;
  CMCON |= 7;
 
  while(1){
-
  if(UART1_Data_Ready() == 1){
  PORTD = UART1_Read();
 
- if(portd.B7 == 0&
- portd.B6 == 0&
- portd.B5 == 1&
- portd.B4 == 0){
+ if(PORTD == 0x00){ dashboard_flag = 0;
+ Lcd_Cmd(_LCD_CLEAR);
+ }
+ if(portd.B7 == 0 & portd.B6 == 0&
+ portd.B5 == 1 & portd.B4 == 0){
  Lcd_Out(1, 1, "WRONG PASSWORD!! ");
  delay_ms(1000);
  Lcd_Cmd(_LCD_CLEAR);
  }
- else if(!portd.B7)
+ else if(!portd.B7){
+
  Lcd_Out(1, 1, "ENTER PASSWORD: ");
+ }
  else if(!dashboard_flag) {
  Lcd_Cmd(_LCD_CLEAR);
  Lcd_Out(1, 1, "Welcome :) ");
  delay_ms(1000);
  Lcd_Cmd(_LCD_CLEAR);
- dashboard_flag = 1;}
+ dashboard_flag = 1;
+ }
  else{
  Lcd_Out(1, 1, "1.DOOR: ");
  Lcd_Out(2, 1, "2.GARAGE: ");
  Lcd_Out(1, 1+16, "3.GARDEN: ");
  Lcd_Out(2, 1+16, "4.COOLING: ");
+
 
  if(portd.B0) Lcd_Out(1, 9, "ON ");
  else Lcd_Out(1, 9, "OFF");
@@ -78,12 +73,7 @@ void main() {
 
  if(portd.B3) Lcd_Out(2, 12+16, "ON ");
  else Lcd_Out(2, 12+16, "OFF");
-
-
-
  }
-
  }
-#line 94 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing2/testing2.c"
-}
+ }
 }
