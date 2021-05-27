@@ -38,7 +38,7 @@ void main(){
         else flag1.B0 = 0;
 
         // PIR (HAMZA)
-        if ((portb.b0 == 1) && (flag2.B1 == 1)) flag1.B1 = 1;  // Turn Light ON/OFF depending on PIR sensor
+        if ((portb.b1 == 1) && (flag2.B1 == 1)) flag1.B1 = 1;  // Turn Light ON/OFF depending on PIR sensor
         else flag1.B1 = 0;
 
         // temperature sensor

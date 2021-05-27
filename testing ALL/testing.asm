@@ -96,8 +96,8 @@ L_main6:
 ;testing.c,38 :: 		else flag1.B0 = 0;
 	BCF        _flag1+0, 0
 L_main7:
-;testing.c,41 :: 		if ((portb.b0 == 1) && (flag2.B1 == 1)) flag1.B1 = 1;  // Turn Light ON/OFF depending on PIR sensor
-	BTFSS      PORTB+0, 0
+;testing.c,41 :: 		if ((portb.b1 == 1) && (flag2.B1 == 1)) flag1.B1 = 1;  // Turn Light ON/OFF depending on PIR sensor
+	BTFSS      PORTB+0, 1
 	GOTO       L_main10
 	BTFSS      _flag2+0, 1
 	GOTO       L_main10

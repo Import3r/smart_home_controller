@@ -1,4 +1,4 @@
-#line 1 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing.c"
+#line 1 "G:/PSUT/Academic/2020-2021 S2/Embedded Systems/project/smart_home_controller/testing ALL/testing.c"
 unsigned int value;
 unsigned int value2;
 unsigned short int flag1 =0x00;
@@ -39,7 +39,7 @@ void main(){
  else flag1.B0 = 0;
 
 
- if ((portb.b0 == 1) && (flag2.B1 == 1)) flag1.B1 = 1;
+ if ((portb.b1 == 1) && (flag2.B1 == 1)) flag1.B1 = 1;
  else flag1.B1 = 0;
 
 
