@@ -22,7 +22,7 @@ void main(){
     ADCON1 = 0x00;
     CMCON = 7;
     Trisa = 0x0F;
-    UART1_Init(9615);
+    UART1_Init(9600);
     delay_ms(50);
     ADC_init();
     Trisb = 0x0F;
@@ -38,7 +38,7 @@ void main(){
         if ((portb.b0 == 1) && (flag2.B0 == 1)) flag1.B0 = 1;  // Turn buzzer ON/OFF depending on door sensor
         else flag1.B0 = 0;
 
-        // PIR (HAMZA)
+        // PIR
         if ((portb.b1 == 1) && (flag2.B1 == 1)) flag1.B1 = 1;  // Turn Light ON/OFF depending on PIR sensor
         else flag1.B1 = 0;
 
@@ -48,7 +48,7 @@ void main(){
         if ((value2>300) && (flag2.B3 == 1)) flag1.B3 = 1;  // Turn Fan ON/OFF depending on temp sensor
         else flag1.B3 = 0;
 
-        // moisture (Hamza)
+        // moisture
         delay_ms(10);
         moisture_value = ADC_Read(0);
         moisture_value = ( moisture_value * 100) / (1023);

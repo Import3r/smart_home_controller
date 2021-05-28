@@ -1,4 +1,4 @@
-#line 1 "G:/PSUT/Academic/2020-2021 S2/Embedded Systems/project/smart_home_controller/testing ALL/testing2/testing2.c"
+#line 1 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing2/testing2.c"
 unsigned short int dashboard_flag = 0;
 
 
@@ -18,7 +18,7 @@ sbit LCD_D7_Direction at TRISB3_bit;
 
 
 void main() {
- UART1_Init(9615);
+ UART1_Init(9600);
  TRISD = 0x00;
  portd=0x00;
 

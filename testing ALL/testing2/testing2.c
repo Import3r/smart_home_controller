@@ -17,7 +17,7 @@ sbit LCD_D7_Direction at TRISB3_bit;
 // End LCD module connections
 
 void main() {
-    UART1_Init(9615);
+    UART1_Init(9600);
     TRISD = 0x00;
     portd=0x00;
 

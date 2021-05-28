@@ -2,7 +2,7 @@
 _main:
 
 ;testing2.c,19 :: 		void main() {
-;testing2.c,20 :: 		UART1_Init(9615);
+;testing2.c,20 :: 		UART1_Init(9600);
 	MOVLW      51
 	MOVWF      SPBRG+0
 	BSF        TXSTA+0, 2

@@ -1,4 +1,4 @@
-#line 1 "G:/PSUT/Academic/2020-2021 S2/Embedded Systems/project/smart_home_controller/testing ALL/testing.c"
+#line 1 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing.c"
 unsigned int value;
 unsigned int value2;
 unsigned short int flag1 =0x00;
@@ -23,7 +23,7 @@ void main(){
  ADCON1 = 0x00;
  CMCON = 7;
  Trisa = 0x0F;
- UART1_Init(9615);
+ UART1_Init(9600);
  delay_ms(50);
  ADC_init();
  Trisb = 0x0F;

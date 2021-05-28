@@ -37,7 +37,7 @@ _main:
 ;testing.c,24 :: 		Trisa = 0x0F;
 	MOVLW      15
 	MOVWF      TRISA+0
-;testing.c,25 :: 		UART1_Init(9615);
+;testing.c,25 :: 		UART1_Init(9600);
 	MOVLW      51
 	MOVWF      SPBRG+0
 	BSF        TXSTA+0, 2
