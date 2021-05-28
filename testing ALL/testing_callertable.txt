@@ -19,6 +19,12 @@ main
 		SETFUN32
 	double2word
 		SETIOV3224
+	Div_32x32_FP
+		SETFDZ32
+		RES032
+		SETFOV32
+		SETFUN32
+	Compare_Double
 	Keypad_Key_Click
 		Keypad_Key_Press
 			Delay_1us

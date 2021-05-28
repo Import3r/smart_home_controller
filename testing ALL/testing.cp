@@ -8,6 +8,7 @@ unsigned short input_digit;
 char input_pass[4];
 int correct_pass_flag[4];
 unsigned short int pass_counter = 0;
+float moisture_value;
 
 char keypadPort at PORTD;
 
@@ -45,14 +46,15 @@ void main(){
 
  ADCON0 = 0b00001001;
  value2 = ADC_Read(1)*4.88;
- if ((value2>300) && (flag2.B2 == 1)) flag1.B2 = 1;
- else flag1.B2 = 0;
+ if ((value2>300) && (flag2.B3 == 1)) flag1.B3 = 1;
+ else flag1.B3 = 0;
 
 
  delay_ms(10);
- value = ADC_Read(0)*4.88;
- if ((value>300) && (flag2.B3 == 1)) flag1.B3 = 1;
- else flag1.B3 = 0;
+ moisture_value = ADC_Read(0);
+ moisture_value = ( moisture_value * 100) / (1023);
+ if ((moisture_value<50) && (flag2.B2 == 1)) flag1.B2 = 1;
+ else flag1.B2 = 0;
 
 
 

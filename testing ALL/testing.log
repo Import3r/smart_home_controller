@@ -1,11 +1,11 @@
 0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -DL -O11111114 -fo8 -N"G:\PSUT\Academic\2020-2021 S2\Embedded Systems\project\smart_home_controller\testing ALL\testing.mcppi" -SP"D:\MikroC\mikroC PRO for PIC\Defs\" -SP"D:\MikroC\mikroC PRO for PIC\Uses\P16\" -SP"G:\PSUT\Academic\2020-2021 S2\Embedded Systems\project\smart_home_controller\testing ALL\" -IP"D:\MikroC\mikroC PRO for PIC\Uses\P16\" "testing.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_Keypad4x4.mcl" "__Lib_ADC_A_C.mcl" "__Lib_EEPROM.mcl" "__Lib_UART_c67.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
 hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
 diagnostics: 0	122	Compilation Started	testing.c
-diagnostics: 120	123	Compiled Successfully	testing.c
-diagnostics: 0	127	All files Compiled in 187 ms	 
-hint: 0	1144	Used RAM (bytes): 31 (9%)  Free RAM (bytes): 321 (91%)	Used RAM (bytes): 31 (9%)  Free RAM (bytes): 321 (91%)
-hint: 0	1144	Used ROM (program words): 937 (11%)  Free ROM (program words): 7255 (89%)	Used ROM (program words): 937 (11%)  Free ROM (program words): 7255 (89%)
+diagnostics: 122	123	Compiled Successfully	testing.c
+diagnostics: 0	127	All files Compiled in 63 ms	 
+hint: 0	1144	Used RAM (bytes): 33 (9%)  Free RAM (bytes): 319 (91%)	Used RAM (bytes): 33 (9%)  Free RAM (bytes): 319 (91%)
+hint: 0	1144	Used ROM (program words): 1231 (15%)  Free ROM (program words): 6961 (85%)	Used ROM (program words): 1231 (15%)  Free ROM (program words): 6961 (85%)
 diagnostics: 0	125	Project Linked Successfully	testing.mcppi
-diagnostics: 0	128	Linked in 16 ms	 
-diagnostics: 0	129	Project 'testing.mcppi' completed: 344 ms	 
-diagnostics: 0	103	Finished successfully: 27 May 2021, 23:47:45	testing.mcppi
+diagnostics: 0	128	Linked in 15 ms	 
+diagnostics: 0	129	Project 'testing.mcppi' completed: 234 ms	 
+diagnostics: 0	103	Finished successfully: 28 May 2021, 14:02:26	testing.mcppi

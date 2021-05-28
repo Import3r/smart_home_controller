@@ -1,4 +1,4 @@
-#line 1 "D:/University/Embedded Systems/Project/smart_home_controller/testing ALL/testing2/testing2.c"
+#line 1 "G:/PSUT/Academic/2020-2021 S2/Embedded Systems/project/smart_home_controller/testing ALL/testing2/testing2.c"
 unsigned short int dashboard_flag = 0;
 
 
@@ -35,9 +35,11 @@ void main() {
  if(UART1_Data_Ready() == 1){
  PORTD = UART1_Read();
 
- if(PORTD == 0x00){ dashboard_flag = 0;
+ if(PORTD == 0x00){
+ dashboard_flag = 0;
  Lcd_Cmd(_LCD_CLEAR);
  }
+
  if(portd.B7 == 0 & portd.B6 == 0&
  portd.B5 == 1 & portd.B4 == 0){
  Lcd_Out(1, 1, "WRONG PASSWORD!! ");
